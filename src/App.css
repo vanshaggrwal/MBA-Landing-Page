@@ -22,6 +22,11 @@ body, html {
 html {
   scroll-behavior: smooth;
 }
+.recruiter-slider .slick-track {
+  display: flex;
+  align-items: center;
+}
+
 
 .baskervville-regular {
   font-family: "Baskervville", serif;

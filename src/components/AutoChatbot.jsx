@@ -1,157 +1,131 @@
 import React, { useState } from "react";
-import image from "../../src/assets/images/robot.png";
-
-// Sample questions and options
+import image from "../assets/images/robot.png";
 const questions = [
-  { question: "What can I help you with?", options: ["Option 1", "Option 2", "Option 3", "Option 4"] },
-  { question: "What is your preferred service?", options: ["Service A", "Service B", "Service C"] },
-  { question: "How satisfied are you with our service?", options: ["Very Satisfied", "Satisfied", "Unsatisfied"] },
+  {
+    question: "What can I help you with?",
+    options: ["Admissions", "Fees", "Placements", "Campus Life"],
+  },
+  {
+    question: "What is your preferred service?",
+    options: ["MBA", "Counselling", "Brochure Download"],
+  },
+  {
+    question: "How satisfied are you with our website?",
+    options: ["Very Satisfied", "Satisfied", "Needs Improvement"],
+  },
 ];
-
 function ChatNowButton() {
   const [showPopup, setShowPopup] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [completed, setCompleted] = useState(false);
-  const [thankYouDisplayed, setThankYouDisplayed] = useState(false); // Track if "Thank you" is displayed
-  const [robotVisible, setRobotVisible] = useState(true); // State to control robot visibility
-  const [shakeRobot, setShakeRobot] = useState(false); // State to trigger shaking animation
+  const [robotVisible, setRobotVisible] = useState(true);
 
-  // Toggle the popup visibility
-  const handleClick = () => {
-    setShowPopup((prevState) => !prevState); // Toggle popup visibility
-    if (showPopup) {
-      resetState(); // Reset state if popup is being closed
-    }
-
-    // Trigger shake animation
-    setShakeRobot(true);
-    setTimeout(() => {
-      setShakeRobot(false); // Stop shaking after animation completes
-    }, 500); // Duration of the shake animation
+  const handleToggle = () => {
+    if (showPopup) resetState();
+    setShowPopup(!showPopup);
   };
 
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
     setTimeout(() => {
-      // Move to next question after a short delay
       if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1); // Next question
-        setSelectedOption(null); // Reset selected option for next question
+        setCurrentQuestionIndex((p) => p + 1);
+        setSelectedOption(null);
       } else {
-        setCompleted(true); // All questions completed
-        setThankYouDisplayed(true); // Display "Thank you" message
+        setCompleted(true);
       }
-    }, 1000);
+    }, 600);
   };
 
   const resetState = () => {
     setCurrentQuestionIndex(0);
     setSelectedOption(null);
     setCompleted(false);
-    setThankYouDisplayed(false); // Reset thank you state
-  };
-
-  // Handle the close button click to close the popup manually
-  const handleClosePopup = () => {
-    setShowPopup(false);
-    setThankYouDisplayed(false); // Also hide the "Thank you" message when closing the popup
-  };
-
-  // Toggle the visibility of the robot image
-  const handleRobotVisibility = () => {
-    setRobotVisible((prevState) => !prevState); // Toggle robot visibility
   };
 
   return (
-    <div className="fixed px-4 md:px-8 right-0 bottom-5 z-60">
-      {/* Inline CSS for shake effect */}
-      <style>
-        {`
-          @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }
-            75% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
-          }
-
-          .shake {
-            animation: shake 0.5s ease-in-out;
-          }
-        `}
-      </style>
-
-      {/* Robot Image */}
+    <div className="fixed bottom-6 right-6 z-[9999]">
+      
+      {/* Robot */}
       {robotVisible && (
-        <div className={`relative ${shakeRobot ? "shake" : ""}`}>
+        <div className="relative">
           <img
             src={image}
             alt="Chat Bot"
-            className="cursor-pointer w-16 h-16"
-            onClick={handleClick}
+            onClick={handleToggle}
+            className="w-16 h-16 cursor-pointer rounded-full shadow-xl hover:scale-105 transition"
           />
-
-          {/* Small red X cross icon on the top-right of the robot image */}
           <span
-            onClick={handleRobotVisibility}
-            className="absolute -top-4 right-0 text-red-500 text-xl font-bold cursor-pointer"
-            title="Hide Robot"
+            onClick={() => setRobotVisible(false)}
+            className="absolute -top-2 -right-2 bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm cursor-pointer"
           >
             ×
           </span>
         </div>
       )}
 
-      {/* Popup for questions */}
-      {showPopup && !completed && (
-        <div className="absolute right-0 bottom-[80px] p-4 bg-white shadow-lg rounded-lg w-72">
-          {/* Close button (cross) for the question popup */}
-          <button
-            className="absolute top-2 right-2 text-2xl font-bold text-red-500 hover:text-red-600"
-            onClick={handleClosePopup}
-          >
-            ×
-          </button>
+      {/* Chat Popup */}
+      {showPopup && (
+        <div className="absolute bottom-20 right-0 w-80 rounded-2xl overflow-hidden
+                        bg-white/90 backdrop-blur-xl shadow-2xl border border-gray-200
+                        animate-fadeIn">
 
-          <div className="text-xl font-semibold mb-2">{questions[currentQuestionIndex].question}</div>
-          <div>
-            {questions[currentQuestionIndex].options.map((option, index) => (
-              <div
-                key={index}
-                onClick={() => handleOptionSelect(option)}
-                className={`p-2 mb-2 rounded-md cursor-pointer ${
-                  selectedOption === option
-                    ? "bg-green-500 text-white"
-                    : "bg-blue-500 text-white hover:bg-blue-600"
-                }`}
-              >
-                {option}
+          {/* Header */}
+          <div className="bg-[#10404A] text-white px-4 py-3 flex justify-between items-center">
+            <p className="font-semibold text-sm">IGSB Assistant</p>
+            <button onClick={handleToggle} className="text-xl">×</button>
+          </div>
+
+          {/* Body */}
+          <div className="p-4">
+            {!completed ? (
+              <>
+                <p className="font-medium mb-4 text-gray-800">
+                  {questions[currentQuestionIndex].question}
+                </p>
+
+                <div className="space-y-2">
+                  {questions[currentQuestionIndex].options.map((opt, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handleOptionSelect(opt)}
+                      className={`w-full text-left px-4 py-2 rounded-lg transition
+                        ${
+                          selectedOption === opt
+                            ? "bg-[#3AAFA9] text-white"
+                            : "bg-gray-100 hover:bg-gray-200 text-gray-800"
+                        }`}
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="text-center py-6">
+                <div className="text-green-500 text-4xl mb-2">✔</div>
+                <p className="font-semibold text-lg">Thank you!</p>
+                <p className="text-sm text-gray-600 mt-1">
+                  Our team will assist you shortly.
+                </p>
               </div>
-            ))}
+            )}
           </div>
         </div>
       )}
 
-      {/* Thank you message with green tick after completing the questions */}
-      {thankYouDisplayed && (
-        <div className="absolute right-0 bottom-[80px] p-4 bg-white shadow-lg rounded-lg w-72">
-          {/* Green checkmark on top center */}
-          <div className="flex justify-center mb-2 text-green-500 text-3xl">✔</div>
-          {/* "Thank you" message center aligned */}
-          <div className="text-center text-xl font-semibold">Thank you for your responses!</div>
-
-          {/* Close button (cross) for the thank you message */}
-          <button
-            className="absolute top-2 right-2 text-2xl font-bold text-red-500 hover:text-red-600"
-            onClick={handleClosePopup}
-          >
-            ×
-          </button>
-        </div>
-      )}
+      {/* Animation */}
+      <style>{`
+        .animate-fadeIn {
+          animation: fadeIn 0.25s ease-out;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </div>
   );
 }
-
 export default ChatNowButton;

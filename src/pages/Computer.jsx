@@ -9,7 +9,9 @@ import CompRecruiter from "../components/Computer/CompRecruiter";
 import CompJoin from "../components/Computer/CompJoin";
 import MbaCourses from "../components/Computer/MbaCources";
 import CampusTour from "../components/Computer/CampusTour";
-
+import ChatNowButton from "../components/AutoChatbot";
+import CompHighlights from "../components/Computer/CompHighlights"; // Import CompHighlights
+import CorePillars from "../components/Computer/CorePillars";
 function Computer() {
   return (
     <div className="">
@@ -22,13 +24,13 @@ function Computer() {
       <CampusTour />
       <CompOfferings />
       <CompStudying />
-      <CompBrochure />
-      {/* <CompHighlights /> */}
+     {/* <CompBrochure />*/}
+     <CorePillars/>
+      <CompHighlights /> 
       <CompJoin />
       <CompCarrer />
-      {/* <AutoChatbot /> */}
+      <ChatNowButton /> 
     </div>
   );
 }
-
 export default Computer;

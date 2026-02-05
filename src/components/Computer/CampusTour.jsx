@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-
-
 import campus1 from "../../assets/images/campus.webp";
 import campus2 from "../../assets/images/smartclass.webp"
 import campus3 from "../../assets/images/Lab3.webp";

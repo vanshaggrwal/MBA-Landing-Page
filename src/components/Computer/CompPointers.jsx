@@ -8,6 +8,8 @@ import {
   FaBolt,
   FaBriefcase,
   FaSuitcase,
+  FaMoneyBillWave,
+  FaCalendarAlt,
 } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -32,14 +34,14 @@ function CompPointers() {
       value: "Choice Based Credit and Grading System",
     },
     {
-      icon: <FaCheckCircle />,
-      title: "Eligibility",
-      value: "Admission Criteria",
+      icon: <FaCalendarAlt />,
+      title: "Programme Format",
+      value: "Offline (On-Campus) Full-Time Programme",
     },
     {
-      icon: <FaGraduationCap />,
-      title: "Degree",
-      value: "SPPU-Affiliated MBA",
+      icon: <FaMoneyBillWave />,
+      title: "Programme Fees",
+      value: "₹ 1,56,000 (Inclusive of all taxes)",
     },
     {
       icon: <FaBookOpen />,
