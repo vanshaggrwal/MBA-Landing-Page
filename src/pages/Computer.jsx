@@ -8,6 +8,7 @@ import CompCarrer from "../components/Computer/CompCarrer";
 import CompRecruiter from "../components/Computer/CompRecruiter";
 import CompJoin from "../components/Computer/CompJoin";
 import MbaCourses from "../components/Computer/MbaCources";
+import CampusTour from "../components/Computer/CampusTour";
 
 function Computer() {
   return (
@@ -18,6 +19,7 @@ function Computer() {
       <CompRecruiter />
       <ProgramOverview />
       <MbaCourses />
+      <CampusTour />
       <CompOfferings />
       <CompStudying />
       <CompBrochure />

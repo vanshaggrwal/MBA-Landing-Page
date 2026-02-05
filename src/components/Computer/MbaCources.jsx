@@ -1,15 +1,35 @@
-import  { useState } from "react";
+import { useState } from "react";
 import marketingImg from "../../assets/images/mm-CRASWm9F.avif";
 import financeImg from "../../assets/images/fm-s7bAl5qI.avif";
 import hrImg from "../../assets/images/hrm-DfuHU7ta.avif";
 import logi from "../../assets/images/logi-sup-OMcpAP5C.avif";
-import NPFWidget from "../NPFWidget"; // Import the NPFWidget component
+import NPFWidget from "../NPFWidget";
 
 const mbaCourses = [
-  { title: "Marketing Management", img: marketingImg },
-  { title: "Financial Management", img: financeImg },
-  { title: "Human Resource Management", img: hrImg },
-  { title: "Operations Management", img: logi },
+  {
+    title: "Marketing Management",
+    subtitle: "MBA Specialization",
+    img: marketingImg,
+    popular: true,
+  },
+  {
+    title: "Financial Management",
+    subtitle: "MBA Specialization",
+    img: financeImg,
+    popular: false,
+  },
+  {
+    title: "Human Resource Management",
+    subtitle: "MBA Specialization",
+    img: hrImg,
+    popular: true,
+  },
+  {
+    title: "Operations Management",
+    subtitle: "MBA Specialization",
+    img: logi,
+    popular: false,
+  },
 ];
 
 const MBACourses = () => {
@@ -18,78 +38,99 @@ const MBACourses = () => {
 
   const openModal = () => {
     setIsModalOpen(true);
-    setTimeout(() => setIsVisible(true), 10); // Small delay to trigger animation
+    setTimeout(() => setIsVisible(true), 10);
   };
 
   const closeModal = () => {
     setIsVisible(false);
-    setTimeout(() => setIsModalOpen(false), 300); // Match transition duration
+    setTimeout(() => setIsModalOpen(false), 300);
   };
 
   return (
     <>
-      <div className="px-4 md:px-8 lg:px-16 w-full  py-8">
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
+      {/* Section */}
+      <section className="py-16 bg-white px-4 md:px-10 lg:px-16">
+        {/* Heading */}
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
           Our <span className="text-[#F37021]">MBA</span> Courses
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {mbaCourses.map((course, idx) => (
             <div
               key={idx}
-              className="border rounded-lg shadow bg-[#3AAFA9] flex flex-col h-full hover:shadow-lg transition"
+              className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
             >
-              {/* Image on top */}
-              <div className="w-full flex items-center justify-center ">
-                <img
-                  src={course.img}
-                  alt={course.title}
-                  className="w-full h-40 object-cover object-top rounded-t-lg"
-                />
-              </div>
+              {/* POPULAR Badge */}
+              {course.popular && (
+                <span className="absolute top-3 left-3 bg-[#F37021] text-white text-xs font-semibold px-3 py-1 rounded-full z-10">
+                  POPULAR
+                </span>
+              )}
 
-              {/* Content below */}
-              <div className="flex flex-col justify-between p-4 flex-1 w-full">
-                <h3 className="text-base md:text-lg font-semibold mb-2 text-white text-center">
+              {/* Image */}
+              <img
+                src={course.img}
+                alt={course.title}
+                className="w-full h-44 object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+
+              {/* Content */}
+              <div className="p-5 bg-white transition-all duration-300 group-hover:-translate-y-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-1">
                   {course.title}
                 </h3>
-                <button
-                  onClick={openModal}
-                  className="mt-auto px-4 py-2 bg-[#10404A] font-bold text-white rounded hover:bg-[#0C2F35] transition text-sm"
-                >
-                  Apply Now
-                </button>
+
+                <p className="text-sm text-gray-600 mb-4">
+                  {course.subtitle}
+                </p>
+
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={openModal}
+                    className="text-sm font-semibold text-[#F37021] hover:underline"
+                  >
+                    Explore Course →
+                  </button>
+
+                  <button
+                    onClick={openModal}
+                    className="px-4 py-2 text-sm font-semibold text-white bg-[#3AAFA9] rounded-md hover:bg-[#2e9e98] transition"
+                  >
+                    Apply Now
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
+      {/* Modal */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 flex items-center justify-center z-50"
+          className="fixed inset-0 z-50 flex items-center justify-center"
           style={{
-            background: "rgba(0, 0, 0, 0.3)",
-            backdropFilter: "blur(5px)",
+            background: "rgba(0,0,0,0.3)",
+            backdropFilter: "blur(6px)",
             opacity: isVisible ? 1 : 0,
             transition: "opacity 0.3s ease",
           }}
         >
           <div
-            className="p-6 rounded-lg max-w-md w-full relative"
+            className="relative max-w-md w-full p-6 rounded-xl"
             style={{
-              background: "rgba(255, 255, 255, 0.1)",
-              backdropFilter: "blur(10px)",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
-              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.37)",
-              opacity: isVisible ? 1 : 0,
+              background: "rgba(255,255,255,0.15)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(255,255,255,0.25)",
               transform: isVisible ? "scale(1)" : "scale(0.95)",
-              transition: "opacity 0.3s ease, transform 0.3s ease",
+              transition: "all 0.3s ease",
             }}
           >
             <button
               onClick={closeModal}
-              className="absolute top-2 right-2 text-white hover:text-gray-300 text-2xl"
+              className="absolute top-2 right-3 text-white text-2xl hover:text-gray-300"
             >
               ×
             </button>

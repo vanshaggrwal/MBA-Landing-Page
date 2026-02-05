@@ -1,83 +1,104 @@
 import React, { useEffect } from "react";
-import { FaCalendarAlt, FaRegClock, FaMoneyBillWave } from "react-icons/fa";
+import {
+  FaRegClock,
+  FaListUl,
+  FaCheckCircle,
+  FaGraduationCap,
+  FaBookOpen,
+  FaBolt,
+  FaBriefcase,
+  FaSuitcase,
+} from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 function CompPointers() {
   useEffect(() => {
     AOS.init({
-      duration: 1000,
+      duration: 900,
       once: true,
     });
   }, []);
 
-  const cardClass =
-    "bg-[#3AAFA9] p-6 rounded-xl shadow-lg flex items-center justify-center transition-transform duration-300 hover:scale-105";
+  const items = [
+    {
+      icon: <FaRegClock />,
+      title: "Duration",
+      value: "2 Years | 4 Semesters",
+    },
+    {
+      icon: <FaListUl />,
+      title: "Credit System",
+      value: "Choice Based Credit and Grading System",
+    },
+    {
+      icon: <FaCheckCircle />,
+      title: "Eligibility",
+      value: "Admission Criteria",
+    },
+    {
+      icon: <FaGraduationCap />,
+      title: "Degree",
+      value: "SPPU-Affiliated MBA",
+    },
+    {
+      icon: <FaBookOpen />,
+      title: "Pedagogy",
+      value: "Experiential & Case Based Learning Model",
+    },
+    {
+      icon: <FaBolt />,
+      title: "Methodology",
+      value: "Outcome Based Education",
+    },
+    {
+      icon: <FaBriefcase />,
+      title: "Placements",
+      value: "650+ Recruiting Partners",
+    },
+    {
+      icon: <FaSuitcase />,
+      title: "Internships",
+      value: "Industry Exposure Programmes",
+    },
+  ];
 
   return (
-    <div className="px-6 md:px-16 py-12 poppins-regular bg-white">
+    <section className="px-6 md:px-16 py-16 bg-white poppins-regular">
       
-      {/* Main Cards Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-16">
-        
-        {/* Card 1 */}
-        <div className={cardClass} data-aos="fade-up">
-          <div className="flex items-center space-x-4">
-            <div className="p-3 rounded-full bg-[#F37021] shadow-md">
-              <FaCalendarAlt size={28} className="text-white" />
+      {/* POINTER GRID (same as 2nd image) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-10">
+        {items.map((item, index) => (
+          <div
+            key={index}
+            data-aos="fade-up"
+            data-aos-delay={index * 80}
+            className="flex items-start gap-4"
+          >
+            {/* Icon */}
+            <div className="min-w-[52px] min-h-[52px] rounded-full border-2 border-[#F37021] flex items-center justify-center text-[#F37021] text-xl">
+              {item.icon}
             </div>
-            <div>
-              <h2 className="text-sm uppercase tracking-wide text-white">
-                Programme Format
-              </h2>
-              <p className="mt-1 text-2xl font-bold text-white">
-                Offline
-              </p>
-            </div>
-          </div>
-        </div>
 
-        {/* Card 2 */}
-        <div className={cardClass} data-aos="fade-up" data-aos-delay="100">
-          <div className="flex items-center space-x-4">
-            <div className="p-3 rounded-full bg-[#F37021] shadow-md">
-              <FaRegClock size={28} className="text-white" />
-            </div>
+            {/* Text */}
             <div>
-              <h2 className="text-sm uppercase tracking-wide text-white">
-                Duration
-              </h2>
-              <p className="mt-1 text-2xl font-bold text-white">
-                2 Years
+              <h4 className="text-sm font-semibold text-gray-700 mb-1">
+                {item.title}
+              </h4>
+              <p className="text-gray-900 font-medium text-sm leading-snug">
+                {item.value}
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Card 3 */}
-        <div className={cardClass} data-aos="fade-up" data-aos-delay="200">
-          <div className="flex items-center space-x-4">
-            <div className="p-3 rounded-full bg-[#F37021] shadow-md">
-              <FaMoneyBillWave size={28} className="text-white" />
-            </div>
-            <div>
-              <h2 className="text-sm uppercase tracking-wide text-white">
-                Programme Fees
-              </h2>
-              <p className="mt-1 text-2xl font-bold text-white">
-                ₹ 1,56,500/-
-              </p>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
 
-      {/* Additional Note */}
+      {/* OLD STYLE NOTE (unchanged color) */}
       <div
-        className="mt-10 text-center bg-[#10404A] p-6 rounded-xl shadow-lg"
+        className="mt-14 bg-[#10404A] rounded-xl p-6 text-center shadow-lg"
         data-aos="fade-up"
       >
-        <p className="text-lg font-medium text-white">
+        <p className="text-white text-base md:text-lg">
           ₹ 55,000 is charged separately for{" "}
           <span className="text-[#F37021] font-semibold">
             CLDP (Career & Leadership Development Programme)
@@ -85,7 +106,7 @@ function CompPointers() {
           .
         </p>
       </div>
-    </div>
+    </section>
   );
 }
 

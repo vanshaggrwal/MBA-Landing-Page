@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import backgroundImage from "../../assets/images/plane.png";
 import NPFWidget from "../NPFWidget";
 
+const steps = [
+  "Fill out the online application form on our website.",
+  "Submit the required documents (mark sheets, ID, etc.).",
+  "Pay the application fee securely online.",
+  "Attend the counseling and interview session.",
+  "Confirm your seat and join IGSB!",
+];
+
 const AdmissionProcess = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -19,46 +27,48 @@ const AdmissionProcess = () => {
   return (
     <>
       {/* SECTION */}
-      <div
-        className="relative px-6 sm:px-12 md:px-16 py-14 text-center text-white bg-cover bg-center"
+      <section
+        className="relative px-6 sm:px-12 md:px-16 py-16 bg-cover bg-center"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-        {/* Teal Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#10404A] via-[#3AAFA9] to-[#10404A] opacity-90"></div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-[#10404A]/90"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-            How to Apply
+        <div className="relative z-10 max-w-7xl mx-auto text-center text-white">
+          {/* Heading */}
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+           How To Apply?
           </h2>
-          <p className="text-base sm:text-lg md:text-xl mb-10 max-w-3xl mx-auto text-gray-100">
+          <p className="text-base md:text-lg mb-12 max-w-3xl mx-auto">
             Follow these simple steps to apply for the MBA Programme at IGSB, Pune
           </p>
 
-          {/* STEPS */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {[1, 2, 3, 4, 5].map((step) => (
-              <div
-                key={step}
-                className="relative bg-white/90 text-[#10404A] p-6 rounded-xl shadow-xl hover:-translate-y-2 transition-all duration-300"
-              >
-                {/* Step Number */}
-                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-[#F37021] text-white flex items-center justify-center font-bold shadow-lg">
-                  {step}
-                </div>
+          {/* TIMELINE */}
+          <div className="relative">
+            {/* Horizontal line (desktop only) */}
+            <div className="hidden lg:block absolute top-6 left-0 right-0 h-[2px] bg-[#F37021]"></div>
 
-                <p className="text-sm sm:text-base md:text-lg mt-4">
-                  {step === 1 && "Fill out the online application form on our website."}
-                  {step === 2 && "Submit the required documents (mark sheets, ID, etc.)."}
-                  {step === 3 && "Pay the application fee securely online."}
-                  {step === 4 && "Attend the counseling and interview session."}
-                  {step === 5 && "Confirm your seat and join IGSB!"}
-                </p>
-              </div>
-            ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+              {steps.map((text, index) => (
+                <div key={index} className="relative text-center">
+                  {/* Step Circle */}
+                  <div className="mx-auto w-12 h-12 rounded-full bg-[#F37021] text-white flex items-center justify-center font-bold text-lg shadow-lg z-10 relative">
+                    {index + 1}
+                  </div>
+
+                  {/* Card */}
+                  <div className="mt-6 bg-white text-[#10404A] p-5 rounded-xl shadow-lg min-h-[140px] flex items-center justify-center">
+                    <p className="text-sm md:text-base">
+                      {text}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* APPLY BUTTON */}
-          <div className="mt-10 flex justify-center">
+          <div className="mt-14">
             <button
               onClick={openModal}
               className="bg-[#F37021] hover:bg-[#d65c1a] text-white py-3 px-10 rounded-full text-lg font-semibold shadow-xl transition-all"
@@ -67,7 +77,7 @@ const AdmissionProcess = () => {
             </button>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* MODAL */}
       {isModalOpen && (

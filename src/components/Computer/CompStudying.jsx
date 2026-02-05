@@ -7,9 +7,9 @@ import {
   FaGraduationCap,
   FaChartLine,
 } from "react-icons/fa";
-import MyImage from "../../assets/images/studying.jpg";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import BgImage from "../../assets/images/studying.jpg"; // 👈 background image
 
 function CompStudying() {
   useEffect(() => {
@@ -30,58 +30,53 @@ function CompStudying() {
   ];
 
   return (
-    <section className="px-6 md:px-16 py-12 poppins-regular bg-white overflow-hidden">
-      <div className="flex flex-col md:flex-row gap-10 items-stretch">
+    <section
+      className="relative py-16 px-6 md:px-16 poppins-regular overflow-hidden bg-cover bg-center"
+      style={{ backgroundImage: `url(${BgImage})` }}
+    >
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/70"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         
-        {/* LEFT CONTENT */}
-        <div className="md:w-7/12">
-          <h1 className="text-3xl md:text-4xl font-semibold text-[#10404A]">
-            Studying with
-          </h1>
-          <h2 className="text-3xl md:text-4xl font-semibold text-[#F37021] mb-6">
-            Indira Global School of Business
+        {/* Heading */}
+        <div className="text-center mb-6">
+          <h2 className="text-3xl md:text-4xl font-semibold text-white">
+            Studying with{" "}
+            <span className="text-[#FBCB2C]">
+              Indira Global School of Business
+            </span>
           </h2>
-
-          <p
-            className="text-base md:text-lg text-[#10404A] mb-8"
-            data-aos="fade-up"
-          >
-            At IGSB, learning goes beyond classrooms to build globally aware,
-            industry-ready leaders. Our AICTE-approved MBA programmes combine
-            academic rigor with real-world exposure to prepare students for
-            dynamic global markets.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {cards.map((card, idx) => (
-              <div
-                key={idx}
-                data-aos="zoom-in"
-                data-aos-delay={idx * 100}
-                className="flex items-center gap-4 bg-[#3AAFA9] p-5 rounded-xl shadow-md
-                           hover:scale-105 transition-transform duration-300"
-              >
-                <div className="bg-[#F37021] p-3 rounded-full">
-                  <card.icon className="text-white text-2xl" />
-                </div>
-                <p className="text-white font-medium text-sm md:text-base">
-                  {card.text}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
 
-        {/* RIGHT IMAGE (DESKTOP ONLY) */}
-        <div
-          className="hidden md:block md:w-5/12 rounded-xl overflow-hidden shadow-lg"
-          data-aos="fade-left"
-        >
-          <img
-            src={MyImage}
-            alt="Indira Global School of Business"
-            className="w-full h-full object-cover"
-          />
+        {/* Required paragraph (UNCHANGED) */}
+        <p className="text-center text-white/90 text-sm md:text-lg max-w-4xl mx-auto mb-14 leading-relaxed">
+          At IGSB, learning goes beyond classrooms to build globally aware,
+          industry-ready leaders. Our AICTE-approved MBA programmes combine
+          academic rigor with real-world exposure to prepare students for
+          dynamic global markets.
+        </p>
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-14 gap-y-12">
+          {cards.map((card, idx) => (
+            <div
+              key={idx}
+              data-aos="fade-up"
+              data-aos-delay={idx * 100}
+              className="flex items-start gap-5"
+            >
+              {/* Icon */}
+              <div className="text-[#FBCB2C] text-3xl mt-1">
+                <card.icon />
+              </div>
+
+              {/* Text */}
+              <p className="text-white text-sm md:text-base leading-relaxed">
+                {card.text}
+              </p>
+            </div>
+          ))}
         </div>
 
       </div>

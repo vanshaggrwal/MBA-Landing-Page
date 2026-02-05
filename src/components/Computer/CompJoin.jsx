@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import backgroundImage from '../../assets/images/join-bg.jpg'; // Adjust the path as necessary
-import NPFWidget from '../NPFWidget'; // Import the NPFWidget component
+import React, { useState } from "react";
+import NPFWidget from "../NPFWidget";
 
 function CompJoin() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -8,70 +7,66 @@ function CompJoin() {
 
   const openModal = () => {
     setIsModalOpen(true);
-    setTimeout(() => setIsVisible(true), 10); // Small delay to trigger animation
+    setTimeout(() => setIsVisible(true), 10);
   };
 
   const closeModal = () => {
     setIsVisible(false);
-    setTimeout(() => setIsModalOpen(false), 300); // Match transition duration
+    setTimeout(() => setIsModalOpen(false), 300);
   };
 
   return (
     <>
-      <div className="relative">
-        {/* Background image */}
-        <div
-          className="bg-cover bg-center absolute top-0 left-0 w-full h-full"
-          style={{ backgroundImage: `url(${backgroundImage})` }}
-        ></div>
+      {/* FULL-WIDTH CTA SECTION */}
+      <section className="relative w-full bg-[#3AAFA9] py-20 px-4 md:px-16 overflow-hidden">
+        {/* Soft overlay shapes (optional CU-style feel) */}
+        <div className="absolute inset-0 opacity-20 bg-gradient-to-r from-white/10 to-transparent" />
 
-        {/* Blue overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-[#3AAFA9] opacity-70 z-10"></div>
+        {/* Content */}
+        <div className="relative z-10 max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Join MBA Programme at IGSB, Pune
+          </h2>
 
-        {/* Text content */}
-        <div className="relative z-20 px-8 md:px-16 py-4">
-          <div className="text-center mb-2">
-            <h1 className="text-5xl font-bold text-white mb-6 mt-2">
-             Join MBA Programme at IGSB, Pune 
-            </h1>
-            <p className="text-xl text-white mb-8">
-            Shaping visionary business leaders of tomorrow. Elevate your future with our dynamic curriculum, global exposure, and industry-driven expertise. 
-            </p>
-            <button
-              onClick={openModal}
-              className="bg-transparent border-2 text-[#ffffff] py-2 px-6 rounded-full text-xl hover:bg-orange-700 hover:text-white transition-all"
-            >
-              Apply Now
-            </button>
-          </div>
+          <p className="text-white/90 text-base md:text-lg max-w-4xl mx-auto mb-10">
+            Shaping visionary business leaders of tomorrow. Elevate your future
+            with our dynamic curriculum, global exposure, and industry-driven
+            expertise.
+          </p>
+
+          <button
+            onClick={openModal}
+            className="inline-flex items-center gap-2 bg-white text-[#3AAFA9] font-semibold px-10 py-3 rounded-full text-lg hover:bg-[#F37021] hover:text-white transition-all"
+          >
+            Apply Now →
+          </button>
         </div>
-      </div>
+      </section>
 
+      {/* MODAL */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 flex items-center justify-center z-50"
+          className="fixed inset-0 z-50 flex items-center justify-center"
           style={{
-            background: "rgba(0, 0, 0, 0.3)",
-            backdropFilter: "blur(5px)",
+            background: "rgba(0,0,0,0.35)",
+            backdropFilter: "blur(6px)",
             opacity: isVisible ? 1 : 0,
             transition: "opacity 0.3s ease",
           }}
         >
           <div
-            className="p-6 rounded-lg max-w-md w-full relative"
+            className="relative max-w-md w-full p-6 rounded-xl"
             style={{
-              background: "rgba(255, 255, 255, 0.1)",
-              backdropFilter: "blur(10px)",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
-              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.37)",
-              opacity: isVisible ? 1 : 0,
+              background: "rgba(255,255,255,0.12)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(255,255,255,0.25)",
               transform: isVisible ? "scale(1)" : "scale(0.95)",
-              transition: "opacity 0.3s ease, transform 0.3s ease",
+              transition: "all 0.3s ease",
             }}
           >
             <button
               onClick={closeModal}
-              className="absolute top-2 right-2 text-white hover:text-gray-300 text-2xl"
+              className="absolute top-2 right-3 text-white text-2xl hover:text-gray-300"
             >
               ×
             </button>

@@ -1,97 +1,83 @@
-import { useEffect, useRef, useState } from "react";
-// Import the image
+import { useEffect } from "react";
 import ProgramImage from "../../assets/images/overview.jpg";
-import HatImage from "../../assets/images/hat.png"; // Import the floating hat image
-
-// Import AOS and its CSS
+import HatImage from "../../assets/images/hat.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 function ProgramOverview() {
-  const leftRef = useRef(null);
-  const [leftHeight, setLeftHeight] = useState("auto");
-
   useEffect(() => {
-    // Initialize AOS
     AOS.init({
-      duration: 1000, // Animation duration (in ms)
-      easing: "ease-in-out", // Easing function for the animation
-      once: true, // Whether the animation should happen only once
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
     });
-
-    // Set the height of the right image container to match the left
-    function updateHeight() {
-      if (leftRef.current) {
-        setLeftHeight(leftRef.current.offsetHeight + "px");
-      }
-    }
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
   return (
-<div className="flex bg-gradient-to-r from-[#10404A] via-[#154E50] to-[#2B9796]
-flex-col md:flex-row justify-between items-stretch
-space-y-6 md:space-y-0 md:space-x-6
-px-4 sm:px-8 md:px-16 py-6 sm:py-12 md:py-16
-poppins-regular overflow-hidden">
-      {/* Left Part: Heading and Paragraph */}
-      <div className="flex-1" data-aos="fade-right" ref={leftRef}>
-        <h2 className="text-2xl md:text-4xl font-bold text-[#F37021] mb-4 relative">
-          {/* Floating Hat Above the "P" */}
+    <section className="bg-white px-6 sm:px-10 md:px-16 py-16 poppins-regular">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+        
+        {/* LEFT IMAGE */}
+        <div
+          className="w-full md:w-1/2"
+          data-aos="fade-right"
+        >
+          <div className="rounded-2xl overflow-hidden shadow-lg">
+            <img
+              src={ProgramImage}
+              alt="Programme Overview"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
+        {/* RIGHT CONTENT */}
+        <div
+          className="w-full md:w-1/2 relative"
+          data-aos="fade-left"
+        >
+          {/* Floating Hat */}
           <img
             src={HatImage}
             alt="Hat"
-            className="absolute left-[-25px] top-[-38px] w-16 h-16 animate-floating"
+            className="absolute -left-6 -top-10 w-14 h-14 animate-floating"
           />
-          MBA Programme Overview
-        </h2>
-        <p className="text-xl md:text-xl text-white tracking-wide">
-          Indira Global School of Business (IGSB) offers a transformative
-          two-year AICTE-approved MBA programme that blends academic excellence
-          with real-world business insights. With global collaborations, diverse
-          specializations, and industry-driven training, the programme
-          emphasizes leadership, innovation, and ethical practices. Experiential
-          learning through live projects, case studies, and international
-          exposure ensures students gain the skills to thrive in a dynamic
-          global economy.{" "}
-        </p>
+
+          <h2 className="text-3xl md:text-4xl font-bold text-[#10404A] mb-4">
+            MBA Programme Overview
+          </h2>
+
+          <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+            Indira Global School of Business (IGSB) offers a transformative
+            two-year AICTE-approved MBA programme that blends academic excellence
+            with real-world business insights. With global collaborations,
+            diverse specializations, and industry-driven training, the programme
+            emphasizes leadership, innovation, and ethical practices.
+            Experiential learning through live projects, case studies, and
+            international exposure ensures students gain the skills to thrive in
+            a dynamic global economy.
+          </p>
+
+          {/* CTA */}
+          <button className="inline-flex items-center gap-2 bg-[#F37021] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#d85f1a] transition">
+            Know More
+            <span className="text-lg">↗</span>
+          </button>
+        </div>
       </div>
 
-      {/* Right Part: Image */}
-      <div
-        className="flex-1  flex items-center justify-center p-4"
-        data-aos="fade-left"
-        style={{ height: leftHeight, minHeight: 0 }}
-      >
-        <img
-          src={ProgramImage} // Use the imported image
-          alt="Programme"
-          className="max-w-md w-full h-auto object-contain"
-          style={{ maxHeight: "320px" }}
-        />
-      </div>
-
-      {/* Floating animation CSS */}
+      {/* Floating animation */}
       <style>{`
         @keyframes floating {
-          0% {
-            transform: translateY(0); /* Start at original position */
-          }
-          50% {
-            transform: translateY(-10px); /* Move up a bit */
-          }
-          100% {
-            transform: translateY(0); /* Return to original position */
-          }
+          0% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+          100% { transform: translateY(0); }
         }
- 
         .animate-floating {
-          animation: floating 3s ease-in-out infinite; /* Apply floating animation */
+          animation: floating 3s ease-in-out infinite;
         }
       `}</style>
-    </div>
+    </section>
   );
 }
 
