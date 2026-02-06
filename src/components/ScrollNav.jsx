@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+
+const ACCENT = "#F37021";
 
 const sections = [
   { id: "comp-hero", label: "Home" },
@@ -18,68 +20,100 @@ const sections = [
 ];
 
 export default function ScrollNav() {
-  const [activeId, setActiveId] = useState(sections[0].id);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [labelTop, setLabelTop] = useState(0);
+  const dashRefs = useRef([]);
 
+  /* -------- Scroll Observer -------- */
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
+            const index = sections.findIndex(
+              (s) => s.id === entry.target.id
+            );
+            if (index !== -1) setActiveIndex(index);
           }
         });
       },
-      {
-        rootMargin: "-45% 0px -45% 0px",
-        threshold: 0,
-      }
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
     );
 
-    sections.forEach((sec) => {
-      const el = document.getElementById(sec.id);
+    sections.forEach((s) => {
+      const el = document.getElementById(s.id);
       if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
   }, []);
 
+  /* -------- Sync label with real dash position -------- */
+  useEffect(() => {
+    const dash = dashRefs.current[activeIndex];
+    if (dash) {
+      const rect = dash.getBoundingClientRect();
+      const parentRect = dash.parentElement.getBoundingClientRect();
+      setLabelTop(rect.top - parentRect.top + 14);
+    }
+  }, [activeIndex]);
+
   return (
     <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden md:flex">
-      <div className="relative flex flex-col items-start gap-6">
+      <div className="relative flex flex-col items-start">
 
-        {/* VERTICAL LINE */}
-        <div className="absolute left-[6px] top-0 h-full w-[1px] bg-black/40" />
+        {/* Vertical Line */}
+        <div
+          className="absolute left-[6px] top-0 h-full w-[1px]"
+          style={{ backgroundColor: "#00000033" }}
+        />
 
-        {sections.map((sec) => (
-          <a
-            key={sec.id}
-            href={`#${sec.id}`}
-            className="relative group flex items-center"
-          >
-            {/* HORIZONTAL TICK */}
-            <span
-              className={`
-                h-[2px] w-6 transition-all duration-300
-                ${activeId === sec.id
-                  ? "bg-black"
-                  : "bg-black/40"}
-              `}
-            />
-
-            {/* LABEL */}
-            <span
-              className={`
-                ml-4 text-sm whitespace-nowrap transition
-                opacity-0 group-hover:opacity-100
-                ${activeId === sec.id
-                  ? "text-black font-medium"
-                  : "text-black/70"}
-              `}
+        {/* Clickable Dashes */}
+        <div className="flex flex-col gap-12">
+          {sections.map((sec, i) => (
+            <button
+              key={sec.id}
+              ref={(el) => (dashRefs.current[i] = el)}
+              onClick={() => {
+                const target = document.getElementById(sec.id);
+                if (target) {
+                  target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
+              }}
+              className="cursor-pointer focus:outline-none"
+              aria-label={`Go to ${sec.label}`}
             >
-              {sec.label}
-            </span>
-          </a>
-        ))}
+              <span
+                className="block h-[2px]"
+                style={{
+                  width: i === activeIndex ? "36px" : "18px",
+                  backgroundColor: ACCENT,
+                  transition: "all 0.3s ease",
+                }}
+              />
+            </button>
+          ))}
+        </div>
+
+        {/* Active Label */}
+        <div
+          className="absolute left-0"
+          style={{
+            top: labelTop,
+            transform: "translateY(12px)",
+            transition: "top 0.35s ease",
+          }}
+        >
+          <span
+            className="text-sm font-medium tracking-wide"
+            style={{ color: ACCENT, whiteSpace: "nowrap" }}
+          >
+            {sections[activeIndex].label}
+          </span>
+        </div>
       </div>
     </div>
   );

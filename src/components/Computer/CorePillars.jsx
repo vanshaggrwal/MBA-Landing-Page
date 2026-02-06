@@ -46,7 +46,7 @@ const pillars = [
 
 export default function CorePillars() {
   return (
-    <section id="core-pillars" className="w-full bg-gradient-to-r from-orange-400 via-teal-700 to-teal-900 py-20">
+    <section id="core-pillars" className="w-full bg-gradient-to-l from-orange-400 via-teal-700 to-teal-900 py-20">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-center text-3xl md:text-4xl font-light text-white mb-16">
           Our Core Pillars:
