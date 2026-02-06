@@ -27,7 +27,7 @@ const AdmissionProcess = () => {
   return (
     <>
       {/* SECTION */}
-      <section
+      <section id="comp-apply"
         className="relative px-6 sm:px-12 md:px-16 py-16 bg-cover bg-center"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >

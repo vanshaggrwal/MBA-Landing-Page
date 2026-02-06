@@ -38,7 +38,7 @@ function TestimonialsWithCTA() {
   return (
     <>
       {/* FULL STRIP */}
-      <section className="bg-[#10404A] py-16 px-6 md:px-16">
+      <section  id="comp-testimonials" className="bg-[#10404A] py-16 px-6 md:px-16">
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 items-center">
 
           {/* LEFT – TESTIMONIALS */}

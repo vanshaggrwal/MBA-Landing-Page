@@ -66,7 +66,7 @@ function CompPointers() {
   ];
 
   return (
-    <section className="px-6 md:px-16 py-16 bg-white poppins-regular">
+    <section id="comp-pointers" className="px-6 md:px-16 py-16 bg-white poppins-regular">
       
       {/* POINTER GRID (same as 2nd image) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-10">

@@ -30,7 +30,7 @@ function CompStudying() {
   ];
 
   return (
-    <section
+    <section id="comp-study"
       className="relative py-16 px-6 md:px-16 poppins-regular overflow-hidden bg-cover bg-center"
       style={{ backgroundImage: `url(${BgImage})` }}
     >

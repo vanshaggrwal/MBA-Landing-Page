@@ -1,6 +1,7 @@
 /* Apply Poppins globally */
 body, html {
   font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
 }
 
 /* Apply Baskervville specifically to the hero section */

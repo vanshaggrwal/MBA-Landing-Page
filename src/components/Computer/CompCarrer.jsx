@@ -38,7 +38,7 @@ function IGSBLandingPage() {
   ];
 
   return (
-    <div className="py-16 poppins-regular bg-white">
+    <section id="comp-career" className="py-16 poppins-regular bg-white">
       <div className="px-6 sm:px-12 md:px-16">
         {/* WHY CHOOSE MBA */}
         <div className="text-center mb-20">
@@ -75,12 +75,12 @@ function IGSBLandingPage() {
         </div>
 
         {/* Admission Process */}
-        <CompApply />
+        <CompApply id="comp-apply" />
 
         {/* Testimonials */}
-        <Testimonials />
+        <Testimonials id="comp-testimonials" />
       </div>
-    </div>
+    </section>
   );
 }
 

@@ -18,7 +18,7 @@ function CompJoin() {
   return (
     <>
       {/* FULL-WIDTH CTA SECTION */}
-      <section className="relative w-full bg-[#3AAFA9] py-20 px-4 md:px-16 overflow-hidden">
+      <section id="comp-join" className="relative w-full bg-[#3AAFA9] py-20 px-4 md:px-16 overflow-hidden">
         {/* Soft overlay shapes (optional CU-style feel) */}
         <div className="absolute inset-0 opacity-20 bg-gradient-to-r from-white/10 to-transparent" />
 

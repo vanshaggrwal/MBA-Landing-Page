@@ -14,7 +14,7 @@ function ProgramOverview() {
   }, []);
 
   return (
-    <section className="bg-white px-6 sm:px-10 md:px-16 py-16 poppins-regular">
+    <section id="program-overview" className="bg-white px-6 sm:px-10 md:px-16 py-16 poppins-regular">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
         
         {/* LEFT IMAGE */}

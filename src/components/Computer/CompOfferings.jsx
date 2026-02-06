@@ -36,7 +36,7 @@ function CompOfferings() {
   }, []);
 
   return (
-    <div className="px-6 sm:px-8 md:px-16 py-14 poppins-regular bg-gradient-to-r from-[#10404A] via-[#3AAFA9] to-[#10404A]">
+    <section id="comp-offerings" className="px-6 sm:px-8 md:px-16 py-14 poppins-regular bg-gradient-to-r from-[#10404A] via-[#3AAFA9] to-[#10404A]">
       
       {/* Heading */}
       <h2
@@ -94,7 +94,7 @@ function CompOfferings() {
         </div>
 
       </div>
-    </div>
+    </section>
   );
 }
 

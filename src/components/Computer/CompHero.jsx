@@ -45,7 +45,7 @@ const handleDownload = () => {
   return (
     <>
       {/* HERO */}
-      <section
+      <section id="comp-hero"
         className="relative px-6 sm:px-8 md:px-16 py-20 bg-cover bg-center text-white"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >

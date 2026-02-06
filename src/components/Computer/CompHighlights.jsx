@@ -38,7 +38,7 @@ function CompHighlights() {
   ];
 
   return (
-    <section className="bg-white py-16 px-6 sm:px-10 md:px-16 poppins-regular">
+    <section id="comp-highlights" className="bg-white py-16 px-6 sm:px-10 md:px-16 poppins-regular">
       
       {/* Heading */}
       <h2

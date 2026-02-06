@@ -49,7 +49,7 @@ const MBACourses = () => {
   return (
     <>
       {/* Section */}
-      <section className="py-16 bg-white px-4 md:px-10 lg:px-16">
+      <section  id="mba-courses" className="py-16 bg-white px-4 md:px-10 lg:px-16">
         {/* Heading */}
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
           Our <span className="text-[#F37021]">MBA</span> Courses

@@ -35,7 +35,7 @@ const sliderSettings = (reverse = false) => ({
 });
 const RecruitersSlider = () => {
   return (
-    <section className="py-14 px-6 md:px-16 bg-white poppins-regular overflow-hidden">
+    <section id="comp-recruiters" className="py-14 px-6 md:px-16 bg-white poppins-regular overflow-hidden">
       
       <h2 className="text-center text-2xl md:text-4xl font-semibold text-[#10404A] mb-12">
         Our Recruiters

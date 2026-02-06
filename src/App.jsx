@@ -15,6 +15,7 @@ function App() {
     <Router basename="/">
       <div className="relative">
         <Navbar />
+        
         <Routes>
           <Route path="/" element={<PageWithDynamicTitle title="igsb" />} />
           <Route path="/thank-you" element={<ThankYouIGSB />} />

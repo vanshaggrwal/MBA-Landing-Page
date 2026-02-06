@@ -31,7 +31,7 @@ const CampusTour = () => {
 
   return (
     <>
-      <section className="py-16 bg-white px-4 md:px-10 lg:px-16">
+      <section id ="campus-tours" className="py-16 bg-white px-4 md:px-10 lg:px-16">
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12">
           Campus <span className="text-[#F37021]">Tour</span>

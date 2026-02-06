@@ -31,7 +31,7 @@ function CompBrochure() {
   return (
     <>
       {/* FULL WIDTH SECTION (same outer color) */}
-      <section className="w-full bg-[#10404A] py-16 px-4 md:px-16">
+      <section id="comp-brochure" className="w-full bg-[#10404A] py-16 px-4 md:px-16">
         <div className="max-w-6xl mx-auto">
           {/* CTA BOX (same color as before) */}
           <div className="relative bg-[#3AAFA9] rounded-3xl px-8 md:px-16 py-12 flex flex-col md:flex-row items-center justify-between gap-8 border border-[#F37021] shadow-xl">
